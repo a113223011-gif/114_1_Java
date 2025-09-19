@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="CopilotDiffPersistence">
+    <option name="pendingDiffs">
+      <map>
+        <entry key="$PROJECT_DIR$/src/ClassAverage.java">
+          <value>
+            <PendingDiffInfo>
+              <option name="filePath" value="$PROJECT_DIR$/src/ClassAverage.java" />
+              <option name="originalContent" value="import java.util.Scanner;&#10;&#10;public class ClassAverage {&#10;    public static void main(String[] args){&#10;        Scanner input = new Scanner(System.in);&#10;&#10;        int total = 0;//總分&#10;        int gradeCounter = 0;//成績計數器&#10;&#10;        System.out.println(&quot;輸入完成請按ctrl-z (Windows) 或 ctrl-d (Mac/Linux) 結束輸入&quot;);&#10;&#10;        while (input.hasNext()){&#10;            if (input.hasNextInt()) {&#10;                int grade = input.nextInt();//讀取成績&#10;                total += grade;//累積總分&#10;                gradeCounter++;//成績計數器加1&#10;            } else {&#10;                System.out.println(&quot;輸入錯誤，請輸入整數成績。&quot;);&#10;                input.next(); // 跳過錯誤輸入&#10;            }&#10;        }&#10;&#10;        if (gradeCounter != 0){&#10;            double average = (double) total / gradeCounter;//計算平均&#10;            System.out.printf(&quot;班級總分: %d%n&quot;, total);&#10;            System.out.printf(&quot;班級人數: %d%n&quot;, gradeCounter);&#10;            System.out.printf(&quot;班級平均: %.2f%n&quot;, average);&#10;        } else {&#10;            System.out.println(&quot;沒有輸入任何成績&quot;);&#10;        }&#10;    }&#10;}&#10;" />
+              <option name="updatedContent" value="import java.util.Scanner;&#10;&#10;public class ClassAverage {&#10;    public static void main(String[] args){&#10;        Scanner input = new Scanner(System.in);&#10;&#10;        int total = 0;//總分&#10;        int gradeCounter = 0;//成績計數器&#10;&#10;        System.out.println(&quot;輸入完成請按ctrl-z (Windows) 或 ctrl-d (Mac/Linux) 結束輸入&quot;);&#10;&#10;        while (input.hasNext()){&#10;            if (input.hasNextInt()) {&#10;                int grade = input.nextInt();//讀取成績&#10;                total += grade;//累積總分&#10;                gradeCounter++;//成績計數器加1&#10;            } else {&#10;                System.out.println(&quot;輸入錯誤，請輸入整數成績。&quot;);&#10;                input.next(); // 跳過錯誤輸入&#10;            }&#10;        }&#10;&#10;        if (gradeCounter != 0){&#10;            double average = (double) total / gradeCounter;//計算平均&#10;            System.out.printf(&quot;班級總分: %d%n&quot;, total);&#10;            System.out.printf(&quot;班級人數: %d%n&quot;, gradeCounter);&#10;            System.out.printf(&quot;班級平均: %.2f%n&quot;, average);&#10;        } else {&#10;            System.out.println(&quot;沒有輸入任何成績&quot;);&#10;        }&#10;    }&#10;}" />
+            </PendingDiffInfo>
+          </value>
+        </entry>
+      </map>
+    </option>
+  </component>
+</project>
