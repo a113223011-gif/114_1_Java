@@ -34,6 +34,5 @@ public class AccountTest {
         }catch (IllegalArgumentException e) {
             System.out.println("提款錯誤:" + e.getMessage());
         }
-
     }//End of main
 }//End of class
