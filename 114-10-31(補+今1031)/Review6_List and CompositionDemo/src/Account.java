@@ -1,4 +1,3 @@
-import java.time.LocalDate;
 import java.time.LocalDateTime;
 
 public class Account {
@@ -33,15 +32,20 @@ public class Account {
         this.openingTime = new Time2(now.getHour(), now.getMinute(), now.getSecond());
     }
 
+    // 新增一個與 AccountTest 相容的建構子: (accountNumber, ownerName, initialBalance)
+    public Account(String accountNumber, String ownerName, double initialBalance) {
+        this(accountNumber, ownerName, "000000", initialBalance);
+    }
+
     public Account(String accountNumber, double initialBalance) {this(accountNumber, "未知", "000000", initialBalance);
     }
 
     public Account() {
-        this("未知", "未知", "000000",00000);
+        this("未知", "未知", "000000", 0);
     }
 
     public Account(String accountNumber) {
-        this(accountNumber, "未知", "000000",0);
+        this(accountNumber, "未知", "000000", 0);
     }
 
     /**
@@ -120,7 +124,3 @@ public class Account {
                 accountNumber, owner.toString(), balance, openingDate.toString(), openingTime.toUniversalString());
     }
 }
-
-
-
-

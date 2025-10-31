@@ -5,12 +5,12 @@ import java.util.Scanner;
 public class AccountTest {
     public static void main(String[] args) {
         List<Account> customers = new ArrayList<>(); // 儲存客戶帳戶的List
-        Account acc1 = new Account("A001", "Alice", "5000",000000);
+        Account acc1 = new Account("A001", "Alice", 5000);
         addCustomer(customers, acc1);
-        Account acc2 = new Account("A002", "Bob", "3000",444444);
+        Account acc2 = new Account("A002", "Bob", 3000);
         addCustomer(customers, acc2);
-        Account acc3 = new Account("A003", "Charlie", "-100",66666);
-        addCustomer(customers,  acc3);
+        Account acc3 = new Account("A003", "Charlie", -100);
+        addCustomer(customers, acc3);
 
         operation(customers);
         // 顯示所有客戶帳戶資訊
@@ -20,7 +20,6 @@ public class AccountTest {
 
     public static void operation(List<Account> customers) {
         Scanner scanner = new Scanner(System.in);
-        Account selectedAccount = null;
         while (true) {
             menu();
             System.out.print("請選擇功能(1-7): ");
@@ -40,7 +39,7 @@ public class AccountTest {
                 case 2:
                     System.out.print("輸入要查詢的帳戶號碼: ");
                     String searchAccNum = scanner.nextLine();
-                    selectedAccount = customerInAction(customers, searchAccNum);
+                    Account selectedAccount = customerInAction(customers, searchAccNum);
                     printCustomerInfo(selectedAccount);
                     break;
 
@@ -129,7 +128,7 @@ public class AccountTest {
             System.out.println("無法列印帳戶資訊，帳戶不存在");
             return;
         }
-        System.out.println(account.toString());
+        System.out.println(account);
     }
 
     // 功能選單 (1) 新增客戶 (2) 列印指定客戶帳戶資訊 (3) 顯示所有客戶帳戶資訊 (4) 刪除客戶帳戶 (5) 存款 (6) 提款 (7) 離開
