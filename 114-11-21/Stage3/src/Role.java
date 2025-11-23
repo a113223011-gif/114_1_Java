@@ -5,7 +5,6 @@ public abstract class Role {
     private int health;
     // 攻擊力
     private int attackPower;
-
     // 建構子：初始化角色的名稱、生命值和攻擊力
     public Role(String name, int health, int attackPower) {
         this.name = name;
@@ -76,4 +75,6 @@ public abstract class Role {
     }
 
     public abstract void onLevelUp();
+    public abstract String getWeaponType();
+
 }
