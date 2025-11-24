@@ -1,4 +1,4 @@
-public abstract class SwordsMan extends Role{
+public  class SwordsMan extends Role{
     // 建構子：初始化劍士的名稱、生命值和攻擊力
     public SwordsMan(String name, int health, int attackPower) {
         super(name, health, attackPower);
@@ -52,6 +52,4 @@ public abstract class SwordsMan extends Role{
     public void onLevelUp() {
         System.out.println("⚔️  劍技更加精湛！");
     }
-    protected abstract void onMeleePrepare();
-    public abstract String getWeaponType();
 }

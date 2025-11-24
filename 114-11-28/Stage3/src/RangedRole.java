@@ -2,13 +2,6 @@ public abstract class RangedRole extends Role {
     private int range;      // 攻擊範圍
     private int energy;     // 能量值
     private int maxEnergy;
-    private int getEnergy;
-    private int getMaxEnergy;
-    private int restoreEnergy;
-
-    public RangedRole(String name, int health, int attackPower, int range, int maxEnergy) {
-        super(name, health, attackPower);
-    }
 
     // 具體方法：檢查射程
     public boolean isInRange(int distance) {
@@ -26,9 +19,4 @@ public abstract class RangedRole extends Role {
 
     // 抽象方法：取得攻擊類型
     public abstract String getRangedAttackType();
-    public abstract void prepareBattle();
-    public abstract void afterBattle();
-    public abstract void onRangedPrepare();
-    public abstract void onRangedRecover();
-    public abstract String toString();
 }

@@ -1,4 +1,4 @@
-public abstract class ShieldSwordsMan extends SwordsMan{
+public class ShieldSwordsMan extends SwordsMan{
     private int defenseCapacity;
     // 建構子：初始化持盾劍士的名稱、生命值和攻擊力
     public ShieldSwordsMan(String name, int health, int attackPower, int defenseCapacity) {
@@ -69,6 +69,4 @@ public abstract class ShieldSwordsMan extends SwordsMan{
     public String toString() {
         return super.toString() + ", 防禦加成: " + defenseCapacity;
     }
-    public abstract String getWeaponType();
-    protected abstract void onMeleePrepare();
 }

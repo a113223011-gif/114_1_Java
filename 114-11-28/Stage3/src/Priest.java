@@ -1,4 +1,4 @@
-public abstract class Priest extends RangedRole {
+public class Priest extends RangedRole {
     private int blessPower;
 
     public Priest(String name, int health, int attackPower,
@@ -11,4 +11,6 @@ public abstract class Priest extends RangedRole {
     public String getRangedAttackType() {
         return "神聖之光";
     }
+
+    // ... 其他方法實作
 }

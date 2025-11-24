@@ -1,4 +1,4 @@
-public abstract class Magician extends Role{
+public class Magician extends Role{
     // 治癒力
     private int healPower;
 
@@ -78,8 +78,4 @@ public abstract class Magician extends Role{
         this.healPower += 3;
         System.out.println("✨ 魔法力量增強！治療力 +3");
     }
-
-    private String getRangedAttackType;
-    public abstract void onRangedPrepare();
-    public abstract void onRangedRecover();
 }
