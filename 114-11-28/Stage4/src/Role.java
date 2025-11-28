@@ -3,11 +3,13 @@ public abstract class Role {
     private String name;
     private int health;
     private int attackPower;
+    private int maxHealth; // 新增：最大生命值
 
     public Role(String name, int health, int attackPower) {
         this.name = name;
         this.health = health;
         this.attackPower = attackPower;
+        this.maxHealth = health; // 初始化最大生命值為當前生命值
     }
 
     // getter/setter 方法
@@ -16,6 +18,9 @@ public abstract class Role {
     public int getAttackPower() { return attackPower; }
     public void setHealth(int health) { this.health = health; }
     public boolean isAlive() { return health > 0; }
+
+    // 新增：取得最大生命值
+    public int getMaxHealth() { return maxHealth; }
 
     // 具體方法
     public void takeDamage(int damage) {

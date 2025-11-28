@@ -1,51 +1,63 @@
-public class Magician extends Role{
-    // 治癒力
+public class Magician extends RangedRole {  // ← 改為繼承 RangedRole
     private int healPower;
 
-    // 建構子：初始化魔法師的名稱、生命值和攻擊力
-    public Magician(String name, int health, int attackPower, int healPower) {
-        super(name, health, attackPower);
+    // ========== 建構子變更 ==========
+    /**
+     * 建構子：初始化魔法師
+     * 注意：現在需要傳入 range 和 maxEnergy 參數
+     */
+    public Magician(String name, int health, int attackPower, int healPower,
+                    int range, int maxEnergy) {  // ← 新增 range 和 maxEnergy 參數
+        super(name, health, attackPower, range, maxEnergy);  // ← 呼叫 RangedRole 建構子
         this.healPower = healPower;
     }
 
-    // 取得治癒力
     public int getHealPower() {
         return healPower;
     }
 
-    // 攻擊對手(劍客/魔法師)，父類別的參考指到子類別物件
+    // ========== 方法修改：加入能量消耗 ==========
+
     @Override
     public void attack(Role opponent) {
-        opponent.setHealth(opponent.getHealth() - this.getAttackPower());
-        System.out.println(this.getName() + " 魔法攻擊 " + opponent.getName() + " 造成 " +
-                this.getAttackPower() + " 點傷害。" + opponent);
+        // ← 新增：檢查能量是否足夠
+        if (!consumeEnergy(15)) {
+            System.out.println("❌ " + getName() + " 能量不足，無法施放魔法！");
+            return;
+        }
+
+        System.out.println("✨ " + getName() + " 施放 " + getRangedAttackType() +
+                " 攻擊 " + opponent.getName() + "！");
+        opponent.takeDamage(this.getAttackPower());
     }
 
-    // 治療隊友(劍客/魔法師)，父類別的參考指到子類別物件
     public void heal(Role ally) {
+        // ← 新增：檢查能量是否足夠
+        if (!consumeEnergy(10)) {
+            System.out.println("❌ " + getName() + " 能量不足，無法施放治療！");
+            return;
+        }
+
+        int oldHealth = ally.getHealth();
         ally.setHealth(ally.getHealth() + this.healPower);
-        System.out.println(this.getName() + " 治療 " + ally.getName() + " 回復 " + healPower + " 點生命值。" + ally);
+        System.out.println("💚 " + this.getName() + " 治療 " + ally.getName() +
+                " 回復 " + healPower + " 點生命值 (" +
+                oldHealth + " → " + ally.getHealth() + ")");
     }
 
     @Override
-    public String toString() {
-        return super.toString() + ", 治癒力: " + healPower;
-    }
-
     public void showSpecialSkill() {
         System.out.println("╔═════════════════════════════╗");
         System.out.println("║ " + this.getName() + " 的特殊技能        ║");
         System.out.println("╠═════════════════════════════╣");
         System.out.println("║ 技能名稱：元素爆發          ║");
-        System.out.println("║ 技能描述：召喚強大魔法攻擊     ║");
-        System.out.println("║ 技能效果:範圍魔法傷害       ║");
-        System.out.println("║ 額外效果:恢復自身魔力       ║");
+        System.out.println("║ 技能描述：召喚強大魔法攻擊  ║");
+        System.out.println("║ 技能效果：範圍魔法傷害      ║");
+        System.out.println("║ 額外效果：恢復自身魔力      ║");
+        System.out.println("║ 射程：" + getRange() + " 米                ║");  // ← 新增射程顯示
         System.out.println("╚═════════════════════════════╝");
     }
-    /**
-     * 魔法師的死亡效果
-     * 魔法師死亡時，身體會化為魔法粒子消散
-     */
+
     @Override
     public void onDeath() {
         System.out.println("💀 " + this.getName() + " 的生命之火熄滅了...");
@@ -53,29 +65,39 @@ public class Magician extends Role{
         System.out.println("🌟 魔法書掉落在地上，微微發光。");
         System.out.println("---");
     }
+
+    // ========== 新增方法：實作 RangedRole 的抽象方法 ==========
+
     /**
-     * 魔法師的戰前準備
-     * 吟唱咒語，準備施法
+     * 取得遠程攻擊類型（實作 RangedRole 的抽象方法）
+     * 魔法師使用魔法彈
      */
     @Override
-    public void prepareBattle() {
-        System.out.println("📖 " + this.getName() + " 翻開魔法書，開始吟唱古老的咒語...");
+    public String getRangedAttackType() {
+        return "魔法彈";
+    }
+
+    /**
+     * 遠程特殊準備（實作 RangedRole 的抽象方法）
+     * 魔法師會吟唱咒語
+     */
+    @Override
+    protected void onRangedPrepare() {
+        System.out.println("📖 翻開魔法書，開始吟唱古老的咒語...");
         System.out.println("✨ 魔法能量在周圍凝聚，空氣中閃爍著神秘的光芒。");
     }
 
     /**
-     * 魔法師的戰後行為
-     * 冥想恢復魔力
+     * 遠程特殊恢復（實作 RangedRole 的抽象方法）
+     * 魔法師會冥想
      */
     @Override
-    public void afterBattle() {
-        System.out.println("🧘 " + this.getName() + " 閉目冥想，恢復消耗的魔力。");
+    protected void onRangedRecover() {
+        System.out.println("🧘 " + this.getName() + " 閉目冥想，深度恢復魔力。");
     }
 
-    // Magician.java
     @Override
-    public void onLevelUp() {
-        this.healPower += 3;
-        System.out.println("✨ 魔法力量增強！治療力 +3");
+    public String toString() {
+        return super.toString() + ", 治癒力: " + healPower;
     }
 }
