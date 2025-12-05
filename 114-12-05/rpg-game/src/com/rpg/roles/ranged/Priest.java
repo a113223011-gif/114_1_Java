@@ -1,3 +1,5 @@
+package com.rpg.roles.ranged;
+import com.rpg.interfaces.Healable;
 public abstract class Priest extends RangedRole implements Healable {
     private int blessPower;
 
